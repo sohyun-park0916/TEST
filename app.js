@@ -68,7 +68,8 @@ function cutoffPassed(dep, cutoff) {
 
 function renderSchedule(pol) {
   const rows = SCHEDULE[pol];
-  const fastest = Math.min(...rows.map((r) => r[5]));
+  const open = rows.filter((r) => !cutoffPassed(r[0], r[2]));
+  const fastest = Math.min(...(open.length ? open : rows).map((r) => r[5]));
   document.getElementById("schedTable").innerHTML =
     "<thead><tr><th>출항</th><th>터미널</th><th>서류마감</th><th>모선</th><th>도착</th><th>소요</th><th>경유</th></tr></thead><tbody>" +
     rows
@@ -77,7 +78,7 @@ function renderSchedule(pol) {
         return `<tr class="${closed ? "closed" : ""}"><td>${dep.slice(5)}</td><td>${term}</td><td>${cut}${
           closed ? '<span class="badge">마감</span>' : ""
         }</td><td>${vsl}</td><td>${arr.slice(2)}</td><td class="num">${days}일${
-          days === fastest ? '<span class="badge fast">최단</span>' : ""
+          days === fastest && !closed ? '<span class="badge fast">최단</span>' : ""
         }</td><td>${via}</td></tr>`;
       })
       .join("") +
