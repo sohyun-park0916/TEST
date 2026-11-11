@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SOHYUN</title>
+  <link rel="icon" href="logo.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 상단 유틸 바 -->
+  <div class="topbar">
+    <div class="wrap topbar-inner">
+      <a href="#">SOHYUN을 시작페이지로</a>
+      <span class="sep"></span>
+      <a href="https://www.fromshipping.com" target="_blank" rel="noopener">프롬해운 바로가기</a>
+    </div>
+  </div>
+
+  <!-- 로고 + 검색 -->
+  <header class="header">
+    <div class="wrap header-inner">
+      <a class="logo" href="/" aria-label="SOHYUN 홈">
+        <img src="logo.png" alt="FROM SHIPPING" />
+        <span class="logo-text">SOHYUN</span>
+      </a>
+      <form class="search" onsubmit="event.preventDefault(); doSearch();">
+        <input id="q" type="search" placeholder="검색어를 입력해 주세요." autocomplete="off" />
+        <button type="submit" aria-label="검색">
+          <svg viewBox="0 0 24 24" width="26" height="26"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.6"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
+        </button>
+      </form>
+    </div>
+  </header>
+
+  <!-- 바로가기 아이콘 -->
+  <nav class="shortcuts wrap">
+    <a href="#"><i style="--c:#1e6fd9">✉</i>메일</a>
+    <a href="#"><i style="--c:#13a463">☕</i>카페</a>
+    <a href="#"><i style="--c:#00b493">✎</i>블로그</a>
+    <a href="#"><i style="--c:#ff6b3d">🛒</i>쇼핑</a>
+    <a href="#"><i style="--c:#3a4bd8">📰</i>뉴스</a>
+    <a href="#"><i style="--c:#e43f5a">📈</i>증권</a>
+    <a href="#"><i style="--c:#7a4ee0">🏠</i>부동산</a>
+    <a href="#"><i style="--c:#00a0e9">📍</i>지도</a>
+    <a href="#"><i style="--c:#0b3d91">🚢</i>선박조회</a>
+    <a href="#"><i style="--c:#f2a900">⋯</i>더보기</a>
+  </nav>
+
+  <!-- 본문 -->
+  <main class="wrap main">
+    <section class="left">
+      <div class="banner">
+        <div>
+          <p class="banner-kicker">FROM SHIPPING</p>
+          <h2>바다를 잇는 물류, 프롬해운</h2>
+          <p class="banner-sub">해상·항공 운송부터 통관까지 한 번에</p>
+        </div>
+        <span class="banner-ship">🚢</span>
+      </div>
+
+      <div class="card">
+        <div class="tabs">
+          <button class="tab active" data-tab="news">뉴스스탠드</button>
+          <button class="tab" data-tab="ent">엔터</button>
+          <button class="tab" data-tab="sports">스포츠</button>
+          <button class="tab" data-tab="biz">경제</button>
+        </div>
+        <ul class="news" id="news"></ul>
+      </div>
+    </section>
+
+    <aside class="right">
+      <div class="card login" id="loginBox">
+        <!-- app.js가 로그인 상태에 맞게 채움 -->
+      </div>
+
+      <div class="card weather">
+        <div class="weather-row">
+          <span class="weather-icon">☀️</span>
+          <div>
+            <strong>14°</strong>
+            <p>서울 · 맑음</p>
+          </div>
+        </div>
+        <ul class="ticker">
+          <li><span>코스피</span><b class="up">2,684.21 ▲</b></li>
+          <li><span>코스닥</span><b class="down">851.33 ▼</b></li>
+          <li><span>USD/KRW</span><b class="up">1,382.50 ▲</b></li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>이용약관 · 개인정보처리방침 · 고객센터</p>
+      <p class="copy">© SOHYUN · FROM SHIPPING Corp.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
