@@ -43,7 +43,7 @@
     <a href="#"><i style="--c:#e43f5a">📈</i>증권</a>
     <a href="#"><i style="--c:#7a4ee0">🏠</i>부동산</a>
     <a href="#"><i style="--c:#00a0e9">📍</i>지도</a>
-    <a href="#"><i style="--c:#0b3d91">🚢</i>선박조회</a>
+    <a href="#schedule"><i style="--c:#0b3d91">🚢</i>선박조회</a>
     <a href="#"><i style="--c:#f2a900">⋯</i>더보기</a>
   </nav>
 
@@ -67,6 +67,19 @@
           <button class="tab" data-tab="biz">경제</button>
         </div>
         <ul class="news" id="news"></ul>
+      </div>
+
+      <div class="card schedule" id="schedule">
+        <div class="schedule-head">
+          <h3>🚢 CMA CGM 스케줄 · 미스라타(LYMRA)행</h3>
+          <span class="schedule-meta">조회 2026-11-11 · 12월 15일 출항분까지 · 40' Dry</span>
+        </div>
+        <div class="tabs">
+          <button class="stab active" data-pol="busan">부산 출발</button>
+          <button class="stab" data-pol="incheon">인천 출발</button>
+        </div>
+        <div class="table-wrap"><table class="sched" id="schedTable"></table></div>
+        <p class="schedule-note">출처: <a href="https://www.cma-cgm.com/ebusiness/schedules" target="_blank" rel="noopener">CMA CGM 스케줄</a> · 실제 예약 전 최신 스케줄을 확인하세요.</p>
       </div>
     </section>
 

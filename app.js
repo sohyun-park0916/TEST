@@ -38,6 +38,60 @@ document.querySelectorAll(".tab").forEach((btn) =>
 );
 renderNews("news");
 
+// ---------- CMA CGM 스케줄 (2026-11-11 조회, 12/15 출항분까지) ----------
+// [출항, 터미널, 서류마감, 모선, 도착, 소요일, 경유]
+const SCHEDULE = {
+  busan: [
+    ["2026-11-16", "BNCT", "11-13 01:54", "CMA CGM MONTE CRISTO", "2026-12-26", 40, "알렉산드리아"],
+    ["2026-11-22", "BNCT", "11-19 07:14", "CMA CGM D'ARTAGNAN", "2027-01-02", 41, "알렉산드리아"],
+    ["2026-11-27", "BNCT", "11-24 03:00", "CMA CGM ADONIS", "2027-01-06", 40, "알렉산드리아"],
+    ["2026-12-10", "BNCT", "12-06 22:00", "CMA CGM APOLLON", "2027-01-23", 44, "알렉산드리아"],
+  ],
+  incheon: [
+    ["2026-11-12", "선광신항", "11-09 12:00", "CNC PLUTO", "2026-12-26", 44, "닝보·알렉산드리아"],
+    ["2026-11-18", "한진", "11-13 11:00", "KOTA NASRAT", "2027-01-06", 49, "닝보·알렉산드리아"],
+    ["2026-11-25", "선광신항", "11-23 12:00", "KUO LONG", "2027-01-23", 59, "닝보·알렉산드리아"],
+    ["2026-11-25", "한진", "11-19 17:00", "CNC PANTHER", "2027-01-23", 59, "닝보·알렉산드리아"],
+    ["2026-12-02", "선광신항", "11-30 12:00", "SEA OF LUCK", "2027-01-23", 52, "닝보·알렉산드리아"],
+    ["2026-12-03", "한진", "11-30 12:00", "SKY PRIDE", "2027-01-23", 51, "닝보·알렉산드리아"],
+    ["2026-12-09", "선광신항", "12-07 12:00", "CNC MARS", "2027-01-30", 52, "닝보·알렉산드리아"],
+    ["2026-12-09", "한진", "12-04 12:00", "HUI ZHOU JIN HAI", "2027-01-30", 52, "닝보·알렉산드리아"],
+    ["2026-12-13", "한진", "12-09 12:00", "KOTA NASRAT", "2027-02-13", 62, "닝보·알렉산드리아"],
+  ],
+};
+
+function cutoffPassed(dep, cutoff) {
+  // 서류마감 "MM-DD HH:MM" → 출항 연도 기준 Date
+  const [md, hm] = cutoff.split(" ");
+  return new Date(`${dep.slice(0, 4)}-${md}T${hm}:00+09:00`) < new Date();
+}
+
+function renderSchedule(pol) {
+  const rows = SCHEDULE[pol];
+  const fastest = Math.min(...rows.map((r) => r[5]));
+  document.getElementById("schedTable").innerHTML =
+    "<thead><tr><th>출항</th><th>터미널</th><th>서류마감</th><th>모선</th><th>도착</th><th>소요</th><th>경유</th></tr></thead><tbody>" +
+    rows
+      .map(([dep, term, cut, vsl, arr, days, via]) => {
+        const closed = cutoffPassed(dep, cut);
+        return `<tr class="${closed ? "closed" : ""}"><td>${dep.slice(5)}</td><td>${term}</td><td>${cut}${
+          closed ? '<span class="badge">마감</span>' : ""
+        }</td><td>${vsl}</td><td>${arr.slice(2)}</td><td class="num">${days}일${
+          days === fastest ? '<span class="badge fast">최단</span>' : ""
+        }</td><td>${via}</td></tr>`;
+      })
+      .join("") +
+    "</tbody>";
+}
+document.querySelectorAll(".stab").forEach((btn) =>
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".stab").forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+    renderSchedule(btn.dataset.pol);
+  })
+);
+renderSchedule("busan");
+
 function doSearch() {
   const q = document.getElementById("q").value.trim();
   if (q) window.open("https://www.google.com/search?q=" + encodeURIComponent(q), "_blank");

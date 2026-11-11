@@ -80,6 +80,24 @@ button { font: inherit; cursor: pointer; }
 .news .press { color: var(--brand); font-weight: 700; flex: 0 0 72px; }
 .news a:hover { text-decoration: underline; }
 
+/* schedule */
+.schedule { margin-top: 20px; }
+.schedule-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; padding: 16px 20px 6px; }
+.schedule-head h3 { font-size: 16px; }
+.schedule-meta { font-size: 12px; color: var(--muted); }
+.stab { background: none; border: 0; padding: 12px; font-weight: 700; color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.stab.active { color: var(--brand); border-color: var(--brand); }
+.table-wrap { overflow-x: auto; padding: 4px 12px; }
+.sched { width: 100%; border-collapse: collapse; font-size: 13px; white-space: nowrap; }
+.sched th { text-align: left; color: var(--muted); font-weight: 600; padding: 10px 8px; border-bottom: 1px solid var(--line); }
+.sched td { padding: 10px 8px; border-bottom: 1px solid #f1f3f4; }
+.sched td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.sched tr.closed td { color: #aaa; }
+.sched .badge { display: inline-block; font-size: 11px; padding: 1px 6px; border-radius: 4px; background: #fdecea; color: #c62828; margin-left: 4px; }
+.sched .fast { background: #e3f2fd; color: var(--brand); }
+.schedule-note { font-size: 12px; color: var(--muted); padding: 10px 20px 16px; }
+.schedule-note a { color: var(--brand); }
+
 /* login box */
 .login { padding: 20px; margin-bottom: 20px; }
 .login p.desc { color: var(--muted); font-size: 13px; margin-bottom: 12px; }
