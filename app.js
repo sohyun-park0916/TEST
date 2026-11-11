@@ -45,7 +45,7 @@ function doSearch() {
 
 // ---------- Supabase 구글 로그인 ----------
 const cfg = window.SOHYUN_CONFIG || {};
-const configured = cfg.SUPABASE_URL && !cfg.SUPABASE_URL.startsWith("YOUR_");
+const configured = cfg.SUPABASE_URL && cfg.SUPABASE_ANON_KEY && cfg.SUPABASE_ANON_KEY.startsWith("eyJ");
 const sb = configured ? window.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY) : null;
 const box = document.getElementById("loginBox");
 
